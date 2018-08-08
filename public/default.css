@@ -1,0 +1,78 @@
+html, body{
+	background-color: #FEFEFE;
+}
+
+button {
+	cursor: pointer;
+}
+
+h1 {
+	margin-top: 10px;
+}
+
+footer {
+	display: inline-block;
+}
+
+.btn-warning, .btn-warning:hover, .btn-info, .btn-info:hover {
+	color: white;
+}
+
+.btn {
+	border: none;
+}
+
+.grid {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-gap: 30px;
+}
+
+.grid-col {
+	grid-column: span 1;
+}
+
+.group-btn-left {
+	border-bottom-left-radius: 6px;
+	border-bottom-right-radius: 0;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 0;
+}
+
+.group-btn-center {
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}
+
+.group-btn-right {
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 6px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 6px;
+}
+
+/* Account type button will fill the screen height navbar-height adjusted */
+/*.account_type_button {
+	font-size: 36px;
+	height: calc(100vh - 56px);
+	border-radius: 0px;
+}*/
+
+/* may cause issues with anything not a form */
+.page-jump {
+	display: block;
+	height: 56px;
+	margin-top: -56px;
+	visibility: hidden;
+}
+
+#filter_status_dropdown {
+	-webkit-appearance: none;
+}
+
+#tasks-container .list-group-item, 
+#groups-container .list-group-item {
+	cursor: pointer;
+}

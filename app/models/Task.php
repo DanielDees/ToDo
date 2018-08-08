@@ -1,0 +1,214 @@
+<?php  
+
+namespace ToDo\Models;
+
+use Core\App;
+use ToDo\Models\Button;
+use DateTime;
+
+/**
+* The Task class handles all task creation, modification, and output.
+*/
+class Task
+{
+	//Accepts an associative array
+	public function get($filters, $order_by = null)
+	{
+		return App::get('database')->where('tasks', $filters, $order_by);
+	}
+
+	public function get_deadline($attribute) 
+	{
+		$now = new DateTime(date('Y-m-d G:i:s'));
+		$deadline = new DateTime($attribute);
+		$msg = "";
+
+		$deadline_display = date_format($deadline, "l, M d, Y \a\\t g:i A");
+		
+		if ($deadline > $now) {
+			$time = $now->diff($deadline);
+
+			// $msg .= "Deadline: " . $attribute . "<br>";
+			$msg .= "Deadline: " . $deadline_display . "<br>";
+			$msg .= "Time Remaining: ";
+
+			if ($time->y > 0) { $msg .= $time->y . "Y "; }
+			if ($time->m > 0) { $msg .= $time->m . "M "; }
+			if ($time->d > 0) { $msg .= $time->d . "D "; }
+			if ($time->h >= 0) { $msg .= $time->h . "h "; }
+			if ($time->i >= 0) { $msg .= $time->i . "m "; }
+			if ($time->s >= 0) { $msg .= $time->s . "s"; }
+
+			return $msg;
+		}
+
+		if ($deadline < $now) {
+			return "The task deadline has passed!";
+		}
+	}
+
+	public function get_priority($id) 
+	{
+		$priority = App::get('database')->select('priorities', $id);
+
+		return "Priority: " . $priority->title;
+	}
+
+	public function get_status($id) 
+	{
+		$status = App::get('database')->select('statuses', $id);
+
+		return "Status: " . $status->title;
+	}
+
+	public function get_category($id) 
+	{
+		$category = App::get('database')->select('categories', $id);
+
+		return "Category: " . $category->title;
+	}
+
+	public function get_date($date) 
+	{
+		return "Created: " . date_format(new DateTime($date), "l, M d, Y \a\\t g:i A");
+	}
+
+	//$attributes is an array where each value is a property of ecah task that is displayed
+	public function display_all($tasks, $attributes) {
+
+		if (!$tasks) {
+			$result .= "<br><h3>No Tasks found!</h3><br>";
+		}
+
+		foreach ($tasks as $task) 
+		{
+			$result .= "<div id='task-" . $task->id . "-container'>";
+
+			$result .= static::display($task, $attributes);
+	
+			$result .= "</div>";
+		}
+
+		return $result;
+	}
+
+	//$attributes is an array where each value is a property that is displayed
+	public function display($task, $attributes) 
+	{
+		$style = App::get('database')->select('statuses', $task->status_id)->style;
+
+		$result = '<br><ul class="list-group">';
+		$result .= '<div class="row justify-content-center">';
+
+		foreach($task as $key => $value) {
+			if (in_array($key, $attributes) && $value !== null) {
+
+				$result .= "<li class='col-sm-8 text-center list-group-item list-group-item-" . $style;
+
+				$result .= "' data-id='" . $task->id . "'>";
+
+				if ($key == 'status_id') {
+					$result .= static::get_status($value);
+				}
+				else if ($key == 'priority_id') {
+					$result .= static::get_priority($value);
+				}
+				else if ($key == 'category_id') {
+					$result .= static::get_category($value);
+				}
+				else if ($key == 'date') {
+					$result .= static::get_date($task->$key);
+				}
+				else if ($key == 'deadline') {
+					$result .= static::get_deadline($task->$key);
+				}
+				else {
+					$result .= nl2br(htmlentities($value));
+				}
+
+				$result .= "</li>";
+			}
+		}
+
+		$result .= "</div>";
+		$result .= "</ul>";
+
+		return $result;
+	}
+
+	public function delete()
+	{
+		App::get('database')->delete('tasks', $_POST['id']);
+
+		$task = [
+			'task_id' => $_POST['id']
+		];
+
+		App::get('database')->delete_where('task_comments', $task);
+
+		return $_POST['id'];
+	}
+
+	public function submit($author) 
+	{
+		$date = date_create($_POST['deadline']);
+		$deadline = date_format($date, 'Y-m-d H:i:s');
+
+		foreach ($_POST as $key => $value) 
+		{
+			if ($value !== '') 
+			{
+				$task[$key] = $value;
+			}	
+		}
+
+		$task['author_id'] = $author->id;
+		$task['deadline'] = $deadline;
+
+		App::get('database')->insert('tasks', $task);
+	}
+
+	public function update() 
+	{
+		$condition = [
+			'id' => $_POST['update-task']
+		];
+
+		unset($_POST['update-task']);
+
+		foreach ($_POST as $key => $value) 
+		{
+			if ($value !== '') 
+			{
+				$values[$key] = $value;
+			}	
+		}
+
+		App::get('database')->update('tasks', $values, $condition);
+	}
+
+	public function archive() 
+	{
+		$task = App::get('database')->select('tasks', $_POST['id']);
+
+		$values = [
+			'archived' => (int) !$task->archived,
+		];
+
+		//CURRENT_TIMESTAMP format
+		if (!$task->archived) 
+		{
+			$values['archive_date'] = date('Y-m-d G:i:s');
+		}
+
+		$condition = [
+			'id' => $task->id
+		];
+
+		App::get('database')->update('tasks', $values, $condition);
+
+		return $_POST['id'];
+	}
+}
+
+?>
