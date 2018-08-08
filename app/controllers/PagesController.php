@@ -213,7 +213,7 @@ class PagesController
 			session_start();
 		}
 
-		if (!isset($_SESSION['logged_in']) || $_SESSION['account_type'] == 'User')
+		if (!isset($_SESSION['logged_in']))
 		{
 			redirect('home');
 		}

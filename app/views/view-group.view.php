@@ -35,20 +35,23 @@
 ?>
 
 <br>
-<div id='users-container'>
+<div id='users-container' class='row justify-content-center'>	
+	<div class='col-sm-10'>
 		
-<?php 
-	//This should also be moved out of the view
-	$user_attributes = ['username', 'email'];
-	
-	foreach ($group_data as $info) 
-	{
-		$user = App::get('database')->select('users', $info->user_id);
+		<?php 
+			//This should also be moved out of the view
+			$user_attributes = ['username', 'email'];
+			
+			foreach ($group_data as $info) 
+			{
+				$user = App::get('database')->select('users', $info->user_id);
 
-		echo Account::display($user, $user_attributes);
-	}
-?>
-
+				echo Account::display($user, $user_attributes);
+				echo "<br>";
+			}
+		?>
+		
+	</div>
 </div>
 
 <!-- AJAX -->
