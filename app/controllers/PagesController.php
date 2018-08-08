@@ -28,7 +28,7 @@ class PagesController
 
 		$page_title = "Home";
 
-		$table_attributes = "table col-sm-4 table-striped table-sm table-bordered text-center";
+		$table_attributes = "table table-striped table-sm table-bordered text-center";
 
 		$table_data = [
 			"Language" => "Proficiency",
