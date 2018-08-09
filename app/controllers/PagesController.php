@@ -166,6 +166,27 @@ class PagesController
 		return view('update-account', $data);
 	}
 
+	public function account() 
+	{
+		if (!isset($_SESSION)) 
+		{
+			session_start();
+		}
+
+		if (!isset($_SESSION['logged_in']))
+		{		
+			redirect('home');
+		}
+
+		$user = App::get('database')->select('users', $_SESSION['user_id']);
+		
+		$page_title = 'Account Settings';
+
+		$data = compact('user', 'page_title');
+
+		return view('account', $data);
+	}
+
 	public function archive() 
 	{
 		if (!isset($_SESSION)) 

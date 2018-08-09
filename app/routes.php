@@ -8,9 +8,10 @@ $router->get('error_404', 'PagesController@error_404');
 $router->get('', 'PagesController@home');
 $router->get('home', 'PagesController@home');
 $router->get('tasks', 'PagesController@tasks');
+$router->get('groups', 'PagesController@groups');
+$router->get('account', 'PagesController@account');
 $router->get('archive', 'PagesController@archive');
 $router->get('categories', 'PagesController@categories');
-$router->get('groups', 'PagesController@groups');
 $router->get('admin-panel', 'PagesController@admin_panel');
 
 $router->get('login', 'PagesController@login');

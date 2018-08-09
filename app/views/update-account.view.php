@@ -38,7 +38,7 @@
 	<div class='row justify-content-center'>
 		<div class="form-group col-sm-3">
 			<label for="role">Account Type:</label>
-			<select name="role" class="form-control">
+			<select name="role_id" class="form-control">
 				<?php 
 					for ($i=0; $i < count($roles); $i++) { 
 						$select = ($user->role_id == $roles[$i]->id ? 'selected' : '');

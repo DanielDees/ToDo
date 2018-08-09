@@ -105,12 +105,24 @@ class Account
 		$condition = [
 			'id' => $_POST['update-user']
 		];
-		
-		$values = [
-			'username' => $_POST['username'],
-			'email' => $_POST['email'],
-			'role_id' => $_POST['role'],
-		];
+
+		unset($_POST['update-user']);	
+
+		if (isset($_POST['change-password']) && $_POST['change-password'] == $_POST['change-password-confirm']) 
+		{
+			$_POST['password'] = Account::set_password($_POST['change-password']);
+
+			unset($_POST['change-password']);
+			unset($_POST['change-password-confirm']);
+		}
+
+		foreach ($_POST as $key => $value) 
+		{
+			if ($value !== '') 
+			{
+				$values[$key] = $value;
+			}	
+		}
 
 		App::get('database')->update('users', $values, $condition);
 		

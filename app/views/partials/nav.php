@@ -16,22 +16,25 @@
 		if ($_SESSION['account_type'] == "Editor") 
 		{
 			$links['Editor-Controls'] = [ 
-				'Archive' => '/archive',
-				'Categories' => '/categories',
+				'<i class="fas fa-archive fa-fw"></i> Archive' => '/archive',
+				'<i class="fas fa-book fa-fw"></i> Categories' => '/categories',
 			];
 		}
 		
 		if ($_SESSION['account_type'] == "Admin") 
 		{
 			$links['Admin-Controls'] = [ 
-				'Archive' => '/archive',
-				'Categories' => '/categories',
-				'Users' => '/admin-panel',
+				'<i class="fas fa-archive fa-fw"></i> Archive' => '/archive',
+				'<i class="fas fa-book fa-fw"></i> Categories' => '/categories',
+				'<i class="fas fa-user fa-fw"></i> Users' => '/admin-panel',
 			];
 		}
 
-		$links['<i class="fas fa-sign-out-alt"></i> Logout'] = '/logout';
-		$login_symbol = 'user-circle';
+		//Public
+		$links['<i class="fas fa-user-circle fa-fw"></i> Account'] = [
+			'<i class="fas fa-cog fa-fw"></i> Account Details' => '/account', 
+			'<i class="fas fa-sign-out-alt fa-fw"></i> Logout' => '/logout',
+		];
 	}
 
 	if (!$_SESSION['logged_in'] && $page_title != 'Login') {

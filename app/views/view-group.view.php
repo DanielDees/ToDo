@@ -103,30 +103,9 @@
 		});
 	};
 
-	function get_group_users() {
-
-		var group_id = $('#submit-comment-content').attr('data-id');
-
-		$.ajax({
-			data: {
-				'group_id': group_id
-			},
-			type: 'GET',
-			url: '/get-group-users',
-			dataType: 'json',
-
-			success: function(data) {
-				$("#users-container").append(data['users']);
-			},
-			error: function(data) {
-				alert("Failed to load users!");
-				console.log("Failure response: " + data['responseText']);
-			},
-		});
-	};
-
-	$('document').ready(function() {
-		//get_group_members();
+	$('document').ready(function() 
+	{
+		//Add in for editors/admins
 		//$('body').on('click', '.remove-member' , remove-member);
 		$('body').on('click', '#join-group' , join_group);
 		$('body').on('click', '#leave-group' , leave_group);
