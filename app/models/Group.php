@@ -89,34 +89,26 @@ class Group
 		return $form;
 	}
 
+	//Join form and leave form can be merged with some tweaks
+	//'user_form' might be a good function name since 'form' is taken
 	public function join_form($group_id = null, $text = 'Join Group') 
 	{
-		$form .= '<div class="row justify-content-center">';
-
-		$form .= '<button 
+		return '<button 
 			id="join-group" ' .
 			'class="btn btn-primary bg-success col-sm-2" ' . 
 			'data-id="' . $group_id . ' ">' . 
 			'<span class="fas fa-plus-circle fa-fw"></span> ' . $text . '</button>';
-		
-		$form .= '</div>';
-
-		return $form;
 	}
 
+	//Join form and leave form can be merged with some tweaks
+	//'user_form' might be a good function name since 'form' is taken
 	public function leave_form($group_id = null, $text = 'Leave Group') 
 	{
-		$form .= '<div class="row justify-content-center">';
-
-		$form .= '<button 
+		return '<button 
 			id="leave-group" ' .
 			'class="btn btn-primary bg-danger col-sm-2" ' . 
 			'data-id="' . $group_id . ' ">' . 
 			'<span class="fas fa-minus-circle fa-fw"></span> ' . $text . '</button>';
-		
-		$form .= '</div>';
-
-		return $form;
 	}
 
 	public function delete()
@@ -157,7 +149,7 @@ class Group
 
 		App::get('database')->delete_where('group_users', $info);
 
-		return $info['user_id'];
+		return $id;
 	}
 
 	public function add_user($id) 

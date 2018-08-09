@@ -12,6 +12,8 @@
 <h1 class="text-center"><?php echo $group->title; ?></h2>
 <br>
 
+<div class="row justify-content-center">
+
 <?php 
 	//Move this php snippet to pagescontroller
 	$member = false;
@@ -34,24 +36,39 @@
 	}
 ?>
 
+</div>
+
 <br>
 <div id='users-container' class='row justify-content-center'>	
-	<div class='col-sm-10'>
-		
 		<?php 
-			//This should also be moved out of the view
-			$user_attributes = ['username', 'email'];
-			
 			foreach ($group_data as $info) 
 			{
 				$user = App::get('database')->select('users', $info->user_id);
 
-				echo Account::display($user, $user_attributes);
-				echo "<br>";
+				$user_buttons = [];
+
+				echo "<div id='user-" . $user->id . "-container' class='col-sm-10'>";
+
+				echo Account::display($user, ['username', 'email']);
+
+				if ($_SESSION['account_type'] != 'User') 
+				{
+					$user_buttons['Remove User'] = Button::delete('group-user');
+
+					foreach ($user_buttons as &$button) 
+					{
+						$button['data-user-id'] = $info->user_id;
+						$button['data-group-id'] = $info->group_id;
+					}
+
+					echo "<div class='row justify-content-center'>";
+					echo Button::create_group($user_buttons);
+					echo "</div>";
+				}
+			
+				echo "<br></div>";
 			}
 		?>
-		
-	</div>
 </div>
 
 <!-- AJAX -->
@@ -93,7 +110,8 @@
 			dataType: 'json',
 
 			success: function(data) {
-				$('#join-group').remove();
+				// $('#join-group').remove();
+				$('#join-group').replaceWith(data['leave-group']);
 				$("#users-container").append(data['user']);
 			},
 			error: function(data) {
@@ -103,10 +121,37 @@
 		});
 	};
 
+	function remove_member() {
+
+		var group_id = $(this).data('group-id');
+		var user_id = $(this).data('user-id');
+
+		$.ajax({
+			data: { 
+				'group_id': group_id,
+				'user_id': user_id,
+				'remove-member': true,
+			},
+			type: 'POST',
+			url: '/query-group',
+			dataType: 'json',
+
+			success: function(data) 
+			{
+				$('#user-' + data['user'] + '-container').remove();
+				console.log('#user-' + data['user'] + '-container');
+			},
+			error: function(data) {
+				alert("Failed to remove member!");
+				console.log(data['responseText']);
+			},
+		});
+	};
+
 	$('document').ready(function() 
 	{
 		//Add in for editors/admins
-		//$('body').on('click', '.remove-member' , remove-member);
+		$('body').on('click', '.delete-group-user' , remove_member);
 		$('body').on('click', '#join-group' , join_group);
 		$('body').on('click', '#leave-group' , leave_group);
 	});

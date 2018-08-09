@@ -4,9 +4,9 @@ namespace ToDo\Controllers;
 
 use Core\App;
 
+use ToDo\Models\Account;
 use ToDo\Models\Button;
 use ToDo\Models\Group;
-use ToDo\Models\Account;
 
 /**
 * The GroupsController handles creation, modification, and deletion of user groups
@@ -40,6 +40,10 @@ class GroupsController
 		if (isset($_POST['join-group'])) 
 		{
 			return GroupsController::join();
+		}
+		if (isset($_POST['remove-member'])) 
+		{
+			return GroupsController::remove_member();
 		}
 
 		//Admin Controls
@@ -153,11 +157,52 @@ class GroupsController
 
 		$user = App::get('database')->select('users', $user_id);
 
-		$attributes = ['username', 'email'];
+		$response .= "<div id='user-" . $user->id . "-container' class='col-sm-10'>";
+
+		$response .= Account::display($user, ['username', 'email']);
+
+		$response .= static::get_group_user_buttons($user_id);
+
+		$response .= '</div>';
 
 		return json_encode([
-			'user' => Account::display($user, $attributes)
+			'user' => $response,
+			'leave-group' => Group::leave_form($_POST['group_id']),
 		]);
+	}
+
+	public function remove_member() 
+	{
+		return json_encode([
+			'user' => Group::remove_user($_POST['user_id']),
+		]);
+	}
+
+	public function get_group_user_buttons($user_id) 
+	{
+		if (!isset($_SESSION)) 
+		{
+			session_start();
+		}
+
+		$response = '';
+
+		if ($_SESSION['account_type'] != 'User') 
+		{
+			$user_buttons['Remove User'] = Button::delete('group-user');
+
+			foreach ($user_buttons as &$button) 
+			{
+				$button['data-user-id'] = $user_id;
+				$button['data-group-id'] = $_POST['group_id'];
+			}
+
+			$response .= "<div class='row justify-content-center'>";
+			$response .= Button::create_group($user_buttons);
+			$response .= "</div>";
+		}
+
+		return $response;
 	}
 }
 
