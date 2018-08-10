@@ -9,7 +9,7 @@
 <h1 class="text-center">Users</h1>
 <br>
 
-<div class="grid">
+<div class="admin-panel-grid">
 	<?php 
 		foreach ($users as $user) {
 

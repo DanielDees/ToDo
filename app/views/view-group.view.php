@@ -39,21 +39,23 @@
 </div>
 
 <br>
-<div id='users-container' class='row justify-content-center'>	
+<div id='users-container' class='groups-grid'>	
 		<?php 
 			foreach ($group_data as $info) 
 			{
+				echo '<div class="grid-col">';
+
 				$user = App::get('database')->select('users', $info->user_id);
 
 				$user_buttons = [];
 
-				echo "<div id='user-" . $user->id . "-container' class='col-sm-10'>";
+				echo "<div id='user-" . $user->id . "-container'>";
 
 				echo Account::display($user, ['username', 'email']);
 
 				if ($_SESSION['account_type'] != 'User') 
 				{
-					$user_buttons['Remove User'] = Button::delete('group-user');
+					$user_buttons['Remove User'] = Button::delete('group-user', 12);
 
 					foreach ($user_buttons as &$button) 
 					{
@@ -61,12 +63,14 @@
 						$button['data-group-id'] = $info->group_id;
 					}
 
-					echo "<div class='row justify-content-center'>";
+					//echo "<div class='row justify-content-center'>";
 					echo Button::create_group($user_buttons);
-					echo "</div>";
+					//echo "</div>";
 				}
 			
-				echo "<br></div>";
+				echo "</div>";
+
+				echo "</div>";
 			}
 		?>
 </div>

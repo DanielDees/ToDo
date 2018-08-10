@@ -157,7 +157,7 @@ class GroupsController
 
 		$user = App::get('database')->select('users', $user_id);
 
-		$response .= "<div id='user-" . $user->id . "-container' class='col-sm-10'>";
+		$response .= "<div id='user-" . $user->id . "-container'>";
 
 		$response .= Account::display($user, ['username', 'email']);
 
@@ -189,7 +189,7 @@ class GroupsController
 
 		if ($_SESSION['account_type'] != 'User') 
 		{
-			$user_buttons['Remove User'] = Button::delete('group-user');
+			$user_buttons['Remove User'] = Button::delete('group-user', 12);
 
 			foreach ($user_buttons as &$button) 
 			{
@@ -197,9 +197,9 @@ class GroupsController
 				$button['data-group-id'] = $_POST['group_id'];
 			}
 
-			$response .= "<div class='row justify-content-center'>";
+			//$response .= "<div class='row justify-content-center'>";
 			$response .= Button::create_group($user_buttons);
-			$response .= "</div>";
+			//$response .= "</div>";
 		}
 
 		return $response;
