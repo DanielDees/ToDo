@@ -3,9 +3,11 @@
 	use ToDo\Models\TableBuilder;
 ?>
 
+<br>
 <div class='row justify-content-center'>
 	<h1>Home</h1>
 </div>
+<br>
 
 <div class='row justify-content-center'>
 
