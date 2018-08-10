@@ -5,9 +5,10 @@
 	
 	//echo "<pre>" , var_dump($_SESSION) , "</pre>";
 
-	$status_options = ['' => 'All Statuses'];
-	$priority_options = ['' => 'All Priorities'];
-	$category_options = ['' => 'All Categories'];
+	//The naming convention is what allows the filter partial to work.
+	$statuses_options = ['' => 'All Statuses'];
+	$priorities_options = ['' => 'All Priorities'];
+	$categories_options = ['' => 'All Categories'];
 
 	$filter_tables = [
 		'statuses' => 'status_id', 
@@ -15,41 +16,21 @@
 		'categories' => 'category_id'
 	];
 
-	// foreach ($filter_tables as $table => $column) 
-	// {
-	// 	echo "<div class='row justify-content-center'>";
-
-	// 	foreach (App::get('database')->select_all($table) as $option) 
-	// 	{	
-	// 		${$table . '_options'}[$option->id] = $option->title;
-
-	// 		Filter::display(${$table . '_options'}, $column, 2); 
-	// 	}
-
-	// 	echo "</div>";
-	// }
-
-	foreach (App::get('database')->select_all('statuses') as $option) 
-	{	
-		$status_options[$option->id] = $option->title;
+	//Create each filter
+	foreach ($filter_tables as $table => $column) 
+	{
+		foreach (App::get('database')->select_all($table) as $option) 
+		{	
+			${$table . '_options'}[$option->id] = $option->title;
+		}
 	}
-
-	foreach (App::get('database')->select_all('priorities') as $option) 
-	{	
-		$priority_options[$option->id] = $option->title;
-	}
-
-	foreach (App::get('database')->select_all('categories') as $option) 
-	{	
-		$category_options[$option->id] = $option->title;
-	}
-
+		
+	//Output each filter
 	echo "<div class='row justify-content-center'>";
 
-	Filter::display($status_options, 'status_id', 2); 
-	Filter::display($priority_options, 'priority_id', 2);
-	Filter::display($category_options, 'category_id', 2);
+	foreach ($filter_tables as $table => $column) {
+		Filter::display(${$table . '_options'}, $column, 2);
+	}
 
 	echo "</div>";
-
 ?>

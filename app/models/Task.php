@@ -29,6 +29,11 @@ class Task
 
 		$deadline_display = date_format($deadline, "l, M d, Y \a\\t g:i A");
 		
+		if ($deadline < $now) 
+		{
+			return "The task deadline has passed!";
+		}
+
 		if ($deadline > $now) {
 			$time = $now->diff($deadline);
 
@@ -46,9 +51,7 @@ class Task
 			return $msg;
 		}
 
-		if ($deadline < $now) {
-			return "The task deadline has passed!";
-		}
+		return $msg;
 	}
 
 	public function get_priority($id) 

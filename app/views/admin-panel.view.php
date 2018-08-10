@@ -60,7 +60,8 @@
 	};
 
 	//Filter
-	$('document').ready(function() {
+	$('document').ready(function() 
+	{
 		//set_filter();
 		//$('#filter_status').on('change', set_filter);
 		$('.grid').on('click', '.edit-account', edit_account);
