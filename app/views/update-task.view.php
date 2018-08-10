@@ -75,14 +75,16 @@
 	</div>	
 
 	<div class='row form-group justify-content-center'>
-		<input 	type="datetime-local" 
-				name="deadline" 
-				class="form-control col-sm-4"
-				value="<?php  
-					$date = date_create($task->deadline);
-					echo date_format($date, 'Y-m-d\TH:i');
+		<input 	class="form-control col-sm-3 calendar" 
+				name="deadline"
+				value="<?php 
+					//Need to find a way to get user's timezone.
+					if ($task->deadline) 
+					{
+						echo Carbon\Carbon::createFromFormat("Y-m-d H:i:s", $task->deadline, 'EST')->toDateTimeString();
+					}
 				?>"
-				required>
+				placeholder="Deadline..." required>
 	</div>
 
 	<div class="row justify-content-center">
@@ -94,5 +96,7 @@
 			</button>
 	</div>
 </form>
+
+<?php require 'partials/flatpickr.php'; ?>
 
 <?php require 'partials/footer.php'; ?>

@@ -63,17 +63,17 @@
 		</div>
 	</div>	
 
-	<!-- Set default time to now -->
 	<div class='row form-group justify-content-center'>
-		<input 	type="datetime-local" 
-				name="deadline" 
-				class="form-control col-sm-4"
+		<input 	class="form-control col-sm-3 calendar" 
+				name="deadline"
 				value='<?php 
-						$now = new DateTime(date('Y-m-d G:i'));
-						echo date_format($now, 'Y-m-d\TH:i');
-					?>'
-				required>
+					//Time is stupid to work with
+					//Need to find a way to get user's timezone.
+					echo Carbon\Carbon::now('EST');
+				?>'
+				placeholder="Deadline..." required>
 	</div>
+	
 
 	<div class="row justify-content-center">
 		<button type="submit" name='submit-task' class='btn btn-primary bg-success col-sm-3'>
@@ -81,5 +81,7 @@
 		</button>
 	</div>
 </form>
+
+<?php require 'partials/flatpickr.php'; ?>
 
 <?php require 'partials/footer.php'; ?>

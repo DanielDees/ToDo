@@ -23,21 +23,19 @@ class Task
 
 	public function get_deadline($attribute) 
 	{
-		$now = new DateTime(date('Y-m-d G:i:s'));
-		$deadline = new DateTime($attribute);
 		$msg = "";
-
-		$deadline_display = date_format($deadline, "l, M d, Y \a\\t g:i A");
 		
+		$now = Carbon::now();
+		$deadline = date2utc($attribute);
+		$deadline_display = date_format(new DateTime($attribute), "l, M d, Y \a\\t g:i A");
+
 		if ($deadline < $now) 
 		{
-			return "The task deadline has passed!";
+			$msg .= "The task deadline has passed!";
 		}
-
-		if ($deadline > $now) {
+		else if ($deadline > $now) 
+		{
 			$time = $now->diff($deadline);
-
-			// $msg .= "Deadline: " . $attribute . "<br>";
 			$msg .= "Deadline: " . $deadline_display . "<br>";
 			$msg .= "Time Remaining: ";
 
@@ -47,8 +45,6 @@ class Task
 			if ($time->h >= 0) { $msg .= $time->h . "h "; }
 			if ($time->i >= 0) { $msg .= $time->i . "m "; }
 			if ($time->s >= 0) { $msg .= $time->s . "s"; }
-
-			return $msg;
 		}
 
 		return $msg;
@@ -158,8 +154,7 @@ class Task
 
 	public function submit($author) 
 	{
-		$date = date_create($_POST['deadline']);
-		$deadline = date_format($date, 'Y-m-d H:i:s');
+		$deadline = date2utc($_POST['deadline'])->toDateTimeString();
 
 		foreach ($_POST as $key => $value) 
 		{

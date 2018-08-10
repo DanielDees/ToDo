@@ -1,4 +1,4 @@
-<!-- Latest compiled and minified CSS -->
+<!-- BS4 Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
 
 <!-- jQuery library -->
@@ -7,7 +7,7 @@
 <!-- Popper JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
 
-<!-- Latest compiled JavaScript -->
+<!-- BS4 Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
 <!-- Font Awesome! (CDN) -->
@@ -16,3 +16,7 @@
 <!-- Font Awesome (Local files) -->
 <link rel="stylesheet" type="text/css" href="/vendor/font-awesome/css/all.css">
 <script src="/vendor/font-awesome/js/all.js"></script>
+	
+<!-- Flatpickr -->
+<link rel="stylesheet" type="text/css" href="/node_modules/flatpickr/dist/flatpickr.css">
+<script src="/node_modules/flatpickr/dist/flatpickr.js"></script>
