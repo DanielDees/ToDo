@@ -33,12 +33,6 @@ class Filter
 			}	
 		}
 
-		//Swap out for group functionality
-		if (!isset($_SESSION['filter']['user_id'])) 
-		{
-			//$_SESSION['filter']['user_id'] = $_SESSION['user_id']);
-		}
-
 		return json_encode([
 			'debug' => $_SESSION['filter']
 		]);

@@ -259,10 +259,33 @@ class PagesController
 
 		$order = [
 			'archive_date' => 'DESC',
-			'title' => 'ASC'
+			'date' => 'DESC'
 		];
 
 		$tasks = Task::get($_SESSION['filter'], $order);
+
+		//This whole callback function is me cheating and not wanting to write / improve the QueryBuilder. RIP Server Memory/Speed.
+		$callback = function ($task) 
+		{
+			if ($_SESSION['account_type'] == 'Admin') 
+			{
+				return true;
+			}
+
+			$user_groups = App::get('database')->where('group_users', ['user_id' => $_SESSION['user_id']]);
+
+			foreach ($user_groups as $group_info) 
+			{
+				if ($task->group_id == $group_info->group_id) 
+				{
+					return true;
+				};
+			}
+
+			return ($task->author_id == $_SESSION['user_id']);
+		};
+
+		$tasks = array_filter($tasks, $callback);
 
 		$task_html = Task::display_all($tasks, ['title']);
 
