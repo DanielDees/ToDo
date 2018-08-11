@@ -71,6 +71,13 @@ class Task
 		return "Category: " . $category->title;
 	}
 
+	public function get_group($id) 
+	{
+		$group = App::get('database')->select('groups', $id);
+
+		return "Group: " . $group->title;
+	}
+
 	public function get_date($date) 
 	{
 		return "Created: " . date_format(new DateTime($date), "l, M d, Y \a\\t g:i A");
@@ -118,6 +125,9 @@ class Task
 				}
 				else if ($key == 'category_id') {
 					$result .= static::get_category($value);
+				}
+				else if ($key == 'group_id') {
+					$result .= static::get_group($value);
 				}
 				else if ($key == 'date') {
 					$result .= static::get_date($task->$key);

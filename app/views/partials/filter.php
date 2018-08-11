@@ -9,11 +9,13 @@
 	$statuses_options = ['' => 'All Statuses'];
 	$priorities_options = ['' => 'All Priorities'];
 	$categories_options = ['' => 'All Categories'];
+	$groups_options = ['' => 'All Groups'];
 
 	$filter_tables = [
 		'statuses' => 'status_id', 
 		'priorities' => 'priority_id', 
-		'categories' => 'category_id'
+		'categories' => 'category_id',
+		'groups' => 'group_id',
 	];
 
 	//Create each filter

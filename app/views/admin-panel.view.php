@@ -64,7 +64,7 @@
 	{
 		//set_filter();
 		//$('#filter_status').on('change', set_filter);
-		$('.grid').on('click', '.edit-account', edit_account);
+		$('body').on('click', '.edit-account', edit_account);
 	});
 
 </script>

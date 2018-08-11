@@ -24,7 +24,7 @@
 	<div class='row form-group justify-content-center'>
 		<div class="col-sm-8">
 			<div class='row form-group'>
-				<select name="status_id" class="form-control col-sm-4">
+				<select name="status_id" class="form-control col-sm-3">
 					<option value="" selected disabled>Status...</option>
 					<?php 
 						for ($i=0; $i < count($task_statuses); $i++) 
@@ -36,7 +36,7 @@
 					?>
 				</select><br>
 
-				<select name="priority_id" class="form-control col-sm-4">
+				<select name="priority_id" class="form-control col-sm-3">
 					<option value="" selected disabled>Priority...</option>
 					<?php 
 						for ($i=0; $i < count($task_priorities); $i++) 
@@ -48,13 +48,25 @@
 					?>
 				</select><br>
 
-				<select name="category_id" class="form-control col-sm-4">
+				<select name="category_id" class="form-control col-sm-3">
 					<option value="" selected disabled>Category...</option>
 					<?php 
 						for ($i=0; $i < count($task_categories); $i++) 
 						{ 			
 							echo "<option value='" . $task_categories[$i]->id . "'>" .
 									$task_categories[$i]->title . 
+								"</option>";
+						};
+					?>
+				</select><br>
+
+				<select name="group_id" class="form-control col-sm-3">
+					<option value="" selected disabled>Group...</option>
+					<?php 
+						for ($i=0; $i < count($task_groups); $i++) 
+						{
+							echo "<option value='" . $task_groups[$i]->id . "'>" .
+									$task_groups[$i]->title . 
 								"</option>";
 						};
 					?>

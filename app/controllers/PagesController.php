@@ -311,6 +311,17 @@ class PagesController
 			return $this->home();
 		}
 
+		$task_groups = [];
+
+		$user_groups = App::get('database')->where('group_users', ['user_id' => $_SESSION['user_id']]);
+
+		foreach ($user_groups as $group_info) 
+		{
+			$group = App::get('database')->select('groups', $group_info->group_id);
+
+			array_push($task_groups, $group);
+		}
+
 		$task_categories = [];
 		$task_priorities = [];
 		$task_statuses = [];
@@ -332,7 +343,8 @@ class PagesController
 		$data = compact('page_title', 
 						'task_categories', 
 						'task_priorities', 
-						'task_statuses');
+						'task_statuses',
+						'task_groups');
 
 		return view('submit-task', $data);	
 	}
@@ -370,7 +382,16 @@ class PagesController
 
 		$task = App::get('database')->select('tasks', $_GET['id']);
 		
-		$page_title = 'Edit Task';
+		$task_groups = [];
+
+		$user_groups = App::get('database')->where('group_users', ['user_id' => $_SESSION['user_id']]);
+
+		foreach ($user_groups as $group_info) 
+		{
+			$group = App::get('database')->select('groups', $group_info->group_id);
+
+			array_push($task_groups, $group);
+		}
 
 		$task_categories = [];
 		$task_priorities = [];
@@ -388,8 +409,11 @@ class PagesController
 			}			
 		}
 
+		$page_title = 'Edit Task';
+
 		$data = compact('task', 
-						'page_title', 
+						'page_title',
+						'task_groups',
 						'task_statuses', 
 						'task_categories', 
 						'task_priorities');
@@ -422,7 +446,7 @@ class PagesController
 		
 		$page_title = 'View Task';
 
-		$task_attributes = ['content', 'status_id', 'priority_id', 'category_id', 'date', 'deadline'];
+		$task_attributes = ['content', 'status_id', 'priority_id', 'category_id', 'date', 'deadline', 'group_id'];
 
 		$data = compact('task', 
 						'comments',
