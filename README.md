@@ -13,5 +13,5 @@ To run the ToDo app, navigate to the project folder's location in your terminal 
 
 Ex: php -S localhost:3000
 
-Once the server is running, simply open up a browser (Google Chrome recommended), and go to localhost.
+Once the server is running, simply open up a browser (Google Chrome recommended), and use localhost:3000 in the browser URL bar.
 
