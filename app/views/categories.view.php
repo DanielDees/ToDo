@@ -112,7 +112,6 @@
 			dataType: 'json',
 
 			success: function(data) {
-
 				if ($('#no-categories-warning')) {
 					$('#no-categories-warning').remove();
 				}

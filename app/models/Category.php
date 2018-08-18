@@ -21,9 +21,12 @@ class Category
 		return App::get('database')->select_all('categories');
 	}
 
-	public static function display_all($categories) {
+	public static function display_all($categories) 
+	{
+		$result = '';
 
-		if (!$categories) {
+		if (!$categories) 
+		{
 			$result .= "<div id='no-categories-warning'><br><h3>No Categories yet...</h3><br></div>";
 		}
 
@@ -42,6 +45,7 @@ class Category
 	public static function display($category) 
 	{
 		$result = '';
+
 		$result .= '<br><ul class="list-group">';
 		
 		foreach($category as $key => $value) {

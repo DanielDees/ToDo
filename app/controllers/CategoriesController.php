@@ -46,7 +46,7 @@ class CategoriesController
 			]);
 	}
 
-	public function get_all() 
+	public static function get_all() 
 	{
 		$categories = Category::get_all();
 		
@@ -57,13 +57,15 @@ class CategoriesController
 		]);
 	}
 
-	public function submit() 
+	public static function submit() 
 	{
 		$title = [
 			'title' => $_POST['title']
 		];
 
 		$category = Category::submit($title);
+
+		$response = '';
 
 		$response .= "<div id='category-" . $category->id . "-container'>";
 
@@ -78,7 +80,7 @@ class CategoriesController
 		]);
 	}
 
-	public function update()
+	public static function update()
 	{
 		$id = Category::update();
 
@@ -93,7 +95,7 @@ class CategoriesController
 		]);
 	}
 
-	public function get_category_buttons($category) 
+	public static function get_category_buttons($category) 
 	{
 		$result = '';
 
@@ -111,7 +113,7 @@ class CategoriesController
 		return $result;
 	}
 
-	public function update_form()
+	public static function update_form()
 	{
 		$category = App::get('database')->select('categories', $_POST['id']);
 

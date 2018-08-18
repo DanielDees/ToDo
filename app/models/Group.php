@@ -21,7 +21,9 @@ class Group
 		return App::get('database')->select_all('groups');
 	}
 
-	public static function display_all($groups) {
+	public static function display_all($groups) 
+	{
+		$result = '';
 
 		if (!$groups) {
 			$result .= "<div id='no-groups-warning'><br><h3>No groups yet...</h3><br></div>";
@@ -42,6 +44,7 @@ class Group
 	public static function display($group) 
 	{
 		$result = '';
+
 		$result .= '<br><ul class="list-group">';
 		
 		foreach($group as $key => $value) {
@@ -166,9 +169,7 @@ class Group
 			return false;
 		}
 
-		$id = App::get('database')->insert('group_users', $info);
-
-		return App::get('database')->select('users', $info->user_id);
+		App::get('database')->insert('group_users', $info);
 	}
 }
 

@@ -17,7 +17,8 @@ class Navbar {
 	public static function display($links, $attributes) {
 
 		//Default grey navbar
-		if (!$attributes) {
+		if (!$attributes) 
+		{
 			$attributes = "navbar navbar-expand-sm bg-secondary navbar-dark sticky-top";
 		}
 

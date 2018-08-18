@@ -14,7 +14,7 @@ use ToDo\Models\Group;
 class GroupsController
 {
 	//Determine which Group action to perform
-	public function query_group() 
+	public static function query_group() 
 	{
 		if (!isset($_SESSION)) 
 		{ 
@@ -59,7 +59,7 @@ class GroupsController
 			]);
 	}
 
-	public function get_all() 
+	public static function get_all() 
 	{
 		$groups = Group::get_all();
 		
@@ -70,13 +70,15 @@ class GroupsController
 		]);
 	}
 
-	public function submit() 
+	public static function submit() 
 	{
 		$title = [
 			'title' => $_POST['title']
 		];
 
 		$group = Group::submit($title);
+
+		$response = '';
 
 		$response .= "<div id='group-" . $group->id . "-container'>";
 
@@ -91,7 +93,7 @@ class GroupsController
 		]);
 	}
 
-	public function update()
+	public static function update()
 	{
 		$id = Group::update();
 
@@ -106,7 +108,7 @@ class GroupsController
 		]);
 	}
 
-	public function get_group_buttons($group) 
+	public static function get_group_buttons($group) 
 	{
 		$result = '';
 
@@ -124,7 +126,7 @@ class GroupsController
 		return $result;
 	}
 
-	public function update_form()
+	public static function update_form()
 	{
 		$group = App::get('database')->select('groups', $_POST['id']);
 
@@ -137,14 +139,14 @@ class GroupsController
 		]);
 	}
 
-	public function leave() 
+	public static function leave() 
 	{
 		$user_id = $_SESSION['user_id'];
 
 		Group::remove_user($user_id);
 	}
 
-	public function join() 
+	public static function join() 
 	{
 		if (!isset($_SESSION)) 
 		{
@@ -156,6 +158,8 @@ class GroupsController
 		Group::add_user($user_id);
 
 		$user = App::get('database')->select('users', $user_id);
+
+		$response = '';
 
 		$response .= "<div id='user-" . $user->id . "-container'>";
 
@@ -171,14 +175,14 @@ class GroupsController
 		]);
 	}
 
-	public function remove_member() 
+	public static function remove_member() 
 	{
 		return json_encode([
 			'user' => Group::remove_user($_POST['user_id']),
 		]);
 	}
 
-	public function get_group_user_buttons($user_id) 
+	public static function get_group_user_buttons($user_id) 
 	{
 		if (!isset($_SESSION)) 
 		{
@@ -197,9 +201,7 @@ class GroupsController
 				$button['data-group-id'] = $_POST['group_id'];
 			}
 
-			//$response .= "<div class='row justify-content-center'>";
 			$response .= Button::create_group($user_buttons);
-			//$response .= "</div>";
 		}
 
 		return $response;
