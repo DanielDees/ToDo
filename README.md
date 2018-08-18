@@ -15,3 +15,15 @@ Ex: php -S localhost:3000
 
 Once the server is running, simply open up a browser (Google Chrome recommended), and use localhost:3000 in the browser URL bar.
 
+There are three default user accounts after importing the database SQL.
+
+admin
+
+editor
+
+user
+
+The password for each account is "password"
+
+Email addresses are admin@todo.com, editor@todo.com, and user@todo.com respectively.
+
