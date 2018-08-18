@@ -99,7 +99,12 @@ class PagesController
 			'email' => $_POST['email']
 		];
 
-		$user = App::get('database')->where('users', $user_info)[0];
+		$user = null;
+
+		if (App::get('database')->where('users', $user_info)) 
+		{
+			$user = App::get('database')->where('users', $user_info)[0];
+		}
 
 		//No account / invalid password
 		if ($user == null || !password_verify($_POST['password'], $user->password)) {

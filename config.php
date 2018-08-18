@@ -3,7 +3,7 @@
 return [
 	'database' => [
 		'connection' => "mysql:host=127.0.0.1",
-		'database' => "ToDoApp",
+		'database' => "ToDoApp_Github",
 		'username' => "root",
 		'password' => "deesasdf",
 		'options' => [
