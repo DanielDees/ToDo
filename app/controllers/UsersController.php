@@ -58,7 +58,7 @@ class UsersController
 
 	public function update_user()
 	{
-		Account::update($user);
+		Account::update();
 
 		redirect('admin-panel');
 	}
