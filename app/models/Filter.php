@@ -10,7 +10,7 @@ use ToDo\Models\Button;
 */
 class Filter
 {
-	public function set() 
+	public static function set() 
 	{
 		if (!isset($_SESSION)) 
 		{
@@ -38,7 +38,7 @@ class Filter
 		]);
 	}
 
-	public function display($options, $filter_name = 'status_id', $size = '2') 
+	public static function display($options, $filter_name = 'status_id', $size = '2') 
 	{
 		echo "<select class='form-control col-sm-". $size . "' id='filter_" . $filter_name . "'>";
 

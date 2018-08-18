@@ -8,14 +8,14 @@ namespace ToDo\Models;
 class Button
 {
 	//Accepts an associative array
-	public function create_group($buttons)
+	public static function create_group($buttons)
 	{
 		$result = "";
 
 		$num = count($buttons);
 
-		for ($i=0; $i < $num; $i++) {
-			
+		for ($i=0; $i < $num; $i++) 
+		{	
 			$text = current(array_keys($buttons));
 			$button = array_shift($buttons);
 			$button_icon = "<span class='fas " . $button['icon'] . " fa-fw'></span> ";
@@ -46,7 +46,7 @@ class Button
 		return $result;
 	}
 
-	public function get_usable($account_type, $archived) 
+	public static function get_usable($account_type, $archived) 
 	{
 		$buttons = [];
 
@@ -75,42 +75,42 @@ class Button
 		return $buttons;
 	}
 
-	public function edit($name, $size = 2) {
+	public static function edit($name, $size = 2) {
 		return [
 			'class' => 'btn-success edit-' . $name . ' col-sm-' . $size,
 			'icon' => 'fa-edit'
 		];
 	}
 
-	public function archive($name, $size = 2) {
+	public static function archive($name, $size = 2) {
 		return [
 			'class' => 'btn-warning archive-' . $name . ' col-sm-' . $size,
 			'icon' => 'fa-minus-square'
 		];
 	}
 
-	public function delete($name, $size = 2) {
+	public static function delete($name, $size = 2) {
 		return [
 			'class' => 'btn-danger delete-' . $name . ' col-sm-' . $size,
 			'icon' => 'fa-trash-alt'
 		];
 	}
 
-	public function user($size = 12) {
+	public static function user($size = 12) {
 		return [
 			'class' => 'btn-success edit-account col-sm-' . $size,
 			'icon' => 'fa-user',
 		];
 	}
 
-	public function editor($size = 12) {
+	public static function editor($size = 12) {
 		return [
 			'class' => 'btn-warning edit-account col-sm-' . $size,
 			'icon' => 'fa-user-edit',
 		];
 	}
 
-	public function admin($size = 12) {
+	public static function admin($size = 12) {
 		return [
 			'class' => 'btn-danger edit_account col-sm-' . $size,
 			'icon' => 'fa-user-cog',

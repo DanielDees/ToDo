@@ -14,7 +14,7 @@
 	<div class='col-sm-6'>
 
 		<?php 
-			if ($_SESSION['logged_in']) {
+			if (isset($_SESSION['logged_in'])) {
 				echo  "<h2>Welcome: " . $_SESSION['username'] . "!</h2>";
 				echo "<p>Account Type: " . $_SESSION['account_type'] . "</p>";
 			}

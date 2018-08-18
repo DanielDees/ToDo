@@ -12,14 +12,15 @@
 <?php
 	echo Task::display($task, $task_attributes);
 
-	if ($_SESSION['logged_in'] && isset($task_buttons)) {
-
+	if ($_SESSION['logged_in'] && isset($task_buttons)) 
+	{
 		foreach ($task_buttons as &$button) {
 			$button['data-id'] = $task->id;
 		}
 
 		echo "<div class='row justify-content-center'>";
-		echo Button::create_group($task_buttons);
+		$test = Button::create_group($task_buttons);
+		echo $test;
 		echo "</div>";
 	}
 ?>

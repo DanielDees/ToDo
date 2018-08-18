@@ -31,9 +31,10 @@ class CommentsController
 			return Comment::delete(); 
 		}
 
-		return json_encode([
-				'comment' => 'CommentsController can\'t figure out what just happened!'
-			]);
+		//Debug
+		// return json_encode([
+		// 		'comment' => 'CommentsController can\'t figure out what just happened!'
+		// 	]);
 	}
 
 	public function get_all() 

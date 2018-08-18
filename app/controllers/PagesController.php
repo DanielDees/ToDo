@@ -21,11 +21,6 @@ class PagesController
 {
 	public function home() 
 	{
-		if (!isset($_SESSION)) 
-		{
-			session_start();
-		}
-
 		$page_title = "Home";
 
 		$table_attributes = "table table-striped table-sm table-bordered text-center";
@@ -113,7 +108,11 @@ class PagesController
 		}
 
 		//The SESSION could just have the user set as a variable and accessed as what it is; a class. $_SESSION['user'] = $user;
-		session_start();
+		if (!isset($_SESSION)) 
+		{
+			session_start();
+		}
+
 		$_SESSION['logged_in'] = true;
 		$_SESSION['user_id'] = $user->id;
 		$_SESSION['username'] = $user->username;
@@ -462,9 +461,16 @@ class PagesController
 			$task_buttons['Edit'] = Button::edit('task');
 			$task_buttons['Delete'] = Button::archive('task');
 		}
-		else if (isset($_SESSION['logged_in'])) 
+		else if ($_SESSION['logged_in']) 
 		{
-			$task_buttons = Button::get_usable($_SESSION['account_type'], $_GET['archived'], $task);
+			$archived = 1;
+
+			if (!isset($_GET['archived'])) 
+			{
+				$archived = 0;
+			}
+
+			$task_buttons = Button::get_usable($_SESSION['account_type'], $archived, $task);
 		}
 		
 		$page_title = 'View Task';

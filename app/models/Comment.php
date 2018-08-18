@@ -13,29 +13,29 @@ class Comment
 	private const DISPLAY_ATTRIBUTES = ['author_id', 'content', 'date'];
 
 	//Accepts an associative array
-	public function get($filters)
+	public static function get($filters)
 	{
 		return App::get('database')->where('task_comments', $filters);
 	}
 
-	public function get_task($task_id)
+	public static function get_task($task_id)
 	{
 		return App::get('database')->where('tasks', ['id' => $task_id])[0]->title;
 	}
 
-	public function get_author($author_id)
+	public static function get_author($author_id)
 	{
 		return App::get('database')->where('users', ['id' => $author_id])[0]->username;
 	}
 
-	public function get_date($date) 
+	public static function get_date($date) 
 	{
 		$msg = date_format(new DateTime($date), "l, M d, Y \a\\t g:i A");
 
 		return $msg;
 	}
 
-	public function display_all($comments) {
+	public static function display_all($comments) {
 
 		if (!$comments) {
 			$result .= "<div id='no-comments-warning'><br><h3>No comments yet...</h3><br></div>";
@@ -53,7 +53,7 @@ class Comment
 		return $result;
 	}
 
-	public function display($comment) 
+	public static function display($comment) 
 	{
 		$result = '';
 		$result .= '<br><ul class="list-group">';
@@ -91,21 +91,21 @@ class Comment
 		return $result;
 	}
 
-	public function delete()
+	public static function delete()
 	{
 		App::get('database')->delete('task_comments', $_POST['id']);
 
 		return $_POST['id'];
 	}
 
-	public function submit($comment) 
+	public static function submit($comment) 
 	{
 		$id = App::get('database')->insert('task_comments', $comment);
 
 		return App::get('database')->select('task_comments', $id);
 	}
 
-	public function form($type, $id, $content = '') {
+	public static function form($type, $id, $content = '') {
 
 		$form = '<br><div class="row justify-content-center">';
 
@@ -126,7 +126,7 @@ class Comment
 		return $form;
 	}
 
-	public function update() 
+	public static function update() 
 	{
 		$condition = [
 			'id' => $_POST['id']

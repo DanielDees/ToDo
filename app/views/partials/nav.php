@@ -6,7 +6,7 @@
 		'<i class="fas fa-home"></i> Home' => '/home',
 	];
 
-	if ($_SESSION['logged_in']) {
+	if (isset($_SESSION['logged_in'])) {
 
 		//All users
 		$links['Tasks'] = '/tasks';
@@ -37,7 +37,7 @@
 		];
 	}
 
-	if (!$_SESSION['logged_in'] && $page_title != 'Login') {
+	if (!isset($_SESSION['logged_in']) && $page_title != 'Login') {
 		$links['<i class="fas fa-sign-in-alt"></i> Login'] = '/login';
 	}
 

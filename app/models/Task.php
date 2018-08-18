@@ -16,12 +16,12 @@ use Carbon\Carbon;
 class Task
 {
 	//Accepts an associative array
-	public function get($filters, $order_by = null)
+	public static function get($filters, $order_by = null)
 	{
 		return App::get('database')->where('tasks', $filters, $order_by);
 	}
 
-	public function get_deadline($attribute) 
+	public static function get_deadline($attribute) 
 	{
 		$msg = "";
 		
@@ -50,41 +50,43 @@ class Task
 		return $msg;
 	}
 
-	public function get_priority($id) 
+	public static function get_priority($id) 
 	{
 		$priority = App::get('database')->select('priorities', $id);
 
 		return "Priority: " . $priority->title;
 	}
 
-	public function get_status($id) 
+	public static function get_status($id) 
 	{
 		$status = App::get('database')->select('statuses', $id);
 
 		return "Status: " . $status->title;
 	}
 
-	public function get_category($id) 
+	public static function get_category($id) 
 	{
 		$category = App::get('database')->select('categories', $id);
 
 		return "Category: " . $category->title;
 	}
 
-	public function get_group($id) 
+	public static function get_group($id) 
 	{
 		$group = App::get('database')->select('groups', $id);
 
 		return "Group: " . $group->title;
 	}
 
-	public function get_date($date) 
+	public static function get_date($date) 
 	{
 		return "Created: " . date_format(new DateTime($date), "l, M d, Y \a\\t g:i A");
 	}
 
 	//$attributes is an array where each value is a property of ecah task that is displayed
-	public function display_all($tasks, $attributes) {
+	public static function display_all($tasks, $attributes) 
+	{
+		$result = '';
 
 		if (!$tasks) {
 			$result .= "<br><h3>No Tasks found!</h3><br>";
@@ -103,7 +105,7 @@ class Task
 	}
 
 	//$attributes is an array where each value is a property that is displayed
-	public function display($task, $attributes) 
+	public static function display($task, $attributes) 
 	{
 		$style = App::get('database')->select('statuses', $task->status_id)->style;
 
@@ -149,7 +151,7 @@ class Task
 		return $result;
 	}
 
-	public function delete()
+	public static function delete()
 	{
 		App::get('database')->delete('tasks', $_POST['id']);
 
@@ -162,7 +164,7 @@ class Task
 		return $_POST['id'];
 	}
 
-	public function submit($author) 
+	public static function submit($author) 
 	{
 		$deadline = date2utc($_POST['deadline'])->toDateTimeString();
 
@@ -180,7 +182,7 @@ class Task
 		App::get('database')->insert('tasks', $task);
 	}
 
-	public function update() 
+	public static function update() 
 	{
 		$condition = [
 			'id' => $_POST['update-task']
@@ -199,7 +201,7 @@ class Task
 		App::get('database')->update('tasks', $values, $condition);
 	}
 
-	public function archive() 
+	public static function archive() 
 	{
 		$task = App::get('database')->select('tasks', $_POST['id']);
 

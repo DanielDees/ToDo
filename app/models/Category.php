@@ -12,16 +12,16 @@ class Category
 	private const DISPLAY_ATTRIBUTES = ['title'];
 
 	//Accepts an associative array
-	public function get($filters)
+	public static function get($filters)
 	{
 		return App::get('database')->where('categories', $filters);
 	}
 
-	public function get_all() {
+	public static function get_all() {
 		return App::get('database')->select_all('categories');
 	}
 
-	public function display_all($categories) {
+	public static function display_all($categories) {
 
 		if (!$categories) {
 			$result .= "<div id='no-categories-warning'><br><h3>No Categories yet...</h3><br></div>";
@@ -39,7 +39,7 @@ class Category
 		return $result;
 	}
 
-	public function display($category) 
+	public static function display($category) 
 	{
 		$result = '';
 		$result .= '<br><ul class="list-group">';
@@ -66,7 +66,7 @@ class Category
 		return $result;
 	}
 
-	public function form($type, $id = null, $title = '') {
+	public static function form($type, $id = null, $title = '') {
 
 		$form = '<br><div class="row justify-content-center">';
 		
@@ -89,21 +89,21 @@ class Category
 		return $form;
 	}
 
-	public function delete()
+	public static function delete()
 	{
 		App::get('database')->delete('categories', $_POST['id']);
 
 		return $_POST['id'];
 	}
 
-	public function submit($category) 
+	public static function submit($category) 
 	{
 		$id = App::get('database')->insert('categories', $category);
 
 		return App::get('database')->select('categories', $id);
 	}
 
-	public function update() 
+	public static function update() 
 	{
 		$condition = [
 			'id' => $_POST['id']

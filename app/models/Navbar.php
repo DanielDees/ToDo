@@ -14,7 +14,7 @@ class Navbar {
  	 *
  	 * 	All links are shown in the same order as they are in the links array.
  	*/
-	public function display($links, $attributes) {
+	public static function display($links, $attributes) {
 
 		//Default grey navbar
 		if (!$attributes) {
@@ -42,7 +42,7 @@ class Navbar {
 		echo "</nav>";
 	}
 
-	public function dropdown($title, $links) 
+	public static function dropdown($title, $links) 
 	{
 		echo "<li class='nav-item dropdown'>";
 		echo "<a class='nav-link dropdown-toggle' 

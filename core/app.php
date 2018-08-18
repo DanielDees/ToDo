@@ -16,7 +16,7 @@ class App
 	}
 
 	//Grab file from registry
-	public function get($key) 
+	public static function get($key) 
 	{
 		try {
 			return static::$registry[$key];

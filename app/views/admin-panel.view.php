@@ -21,7 +21,7 @@
 			if ($user->role_id == '2') {
 				$buttons['Edit User'] = Button::editor();
 			}
-			if ($buttons['Edit User']) {
+			if (isset($buttons['Edit User'])) {
 				$buttons['Edit User']['data-id'] = $user->id;
 			}
 

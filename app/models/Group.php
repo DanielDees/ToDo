@@ -12,16 +12,16 @@ class Group
 	private const DISPLAY_ATTRIBUTES = ['title'];
 
 	//Accepts an associative array
-	public function get($filters)
+	public static function get($filters)
 	{
 		return App::get('database')->where('groups', $filters);
 	}
 
-	public function get_all() {
+	public static function get_all() {
 		return App::get('database')->select_all('groups');
 	}
 
-	public function display_all($groups) {
+	public static function display_all($groups) {
 
 		if (!$groups) {
 			$result .= "<div id='no-groups-warning'><br><h3>No groups yet...</h3><br></div>";
@@ -39,7 +39,7 @@ class Group
 		return $result;
 	}
 
-	public function display($group) 
+	public static function display($group) 
 	{
 		$result = '';
 		$result .= '<br><ul class="list-group">';
@@ -66,7 +66,7 @@ class Group
 		return $result;
 	}
 
-	public function form($type, $id = null, $title = '') {
+	public static function form($type, $id = null, $title = '') {
 
 		$form = '<br><div class="row justify-content-center">';
 		
@@ -91,7 +91,7 @@ class Group
 
 	//Join form and leave form can be merged with some tweaks
 	//'user_form' might be a good function name since 'form' is taken
-	public function join_form($group_id = null, $text = 'Join Group') 
+	public static function join_form($group_id = null, $text = 'Join Group') 
 	{
 		return '<button 
 			id="join-group" ' .
@@ -102,7 +102,7 @@ class Group
 
 	//Join form and leave form can be merged with some tweaks
 	//'user_form' might be a good function name since 'form' is taken
-	public function leave_form($group_id = null, $text = 'Leave Group') 
+	public static function leave_form($group_id = null, $text = 'Leave Group') 
 	{
 		return '<button 
 			id="leave-group" ' .
@@ -111,21 +111,21 @@ class Group
 			'<span class="fas fa-minus-circle fa-fw"></span> ' . $text . '</button>';
 	}
 
-	public function delete()
+	public static function delete()
 	{
 		App::get('database')->delete('groups', $_POST['id']);
 
 		return $_POST['id'];
 	}
 
-	public function submit($group) 
+	public static function submit($group) 
 	{
 		$id = App::get('database')->insert('groups', $group);
 
 		return App::get('database')->select('groups', $id);
 	}
 
-	public function update() 
+	public static function update() 
 	{
 		$condition = [
 			'id' => $_POST['id']
@@ -140,7 +140,7 @@ class Group
 		return $_POST['id'];
 	}
 
-	public function remove_user($id) 
+	public static function remove_user($id) 
 	{
 		$info = [
 			'user_id' => $id,
@@ -152,7 +152,7 @@ class Group
 		return $id;
 	}
 
-	public function add_user($id) 
+	public static function add_user($id) 
 	{
 		$info = [
 			'user_id' => $id,

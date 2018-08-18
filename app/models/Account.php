@@ -10,24 +10,24 @@ use Core\App;
 */
 class Account
 {
-	public function get_role($id) 
+	public static function get_role($id) 
 	{
 		$role = App::get('database')->select('roles', $id);
 
 		return "Account Type: " . $role->title;
 	}
 
-	public function get_username($username) 
+	public static function get_username($username) 
 	{
 		return $username;
 	}
 
-	public function get_email($email) 
+	public static function get_email($email) 
 	{
 		return $email;
 	}
 
-	public function display($user, $attributes) 
+	public static function display($user, $attributes) 
 	{	
 		$style = App::get('database')->select('roles', $user->role_id)->style;
 
@@ -62,7 +62,7 @@ class Account
 	}
 
 	//Checks if account information is valid
-	public function validate($user) 
+	public static function validate($user) 
 	{
 		$email = filter_var($user['email'], FILTER_SANITIZE_EMAIL);
 
@@ -87,7 +87,7 @@ class Account
 	}
 
 	//Accepts associative array
-	public function create($user) 
+	public static function create($user) 
 	{
 		App::get('database')->insert('users', $user);
 
@@ -100,7 +100,7 @@ class Account
 		return true;
 	}
 
-	public function update() 
+	public static function update() 
 	{
 		$condition = [
 			'id' => $_POST['update-user']
@@ -129,7 +129,7 @@ class Account
 	 	static::reset_password($condition);
 	}
 
-	public function delete() 
+	public static function delete() 
 	{
 		$user = App::get('database')->select('users', $_POST['delete-user']);
 
@@ -143,7 +143,7 @@ class Account
 		return $_POST['id'];
 	}
 
-	public function set_password($password) 
+	public static function set_password($password) 
 	{
 		$options = [
 			'cost' => 10
@@ -153,7 +153,7 @@ class Account
 		return password_hash($password, PASSWORD_DEFAULT, $options);
 	}
 
-	public function reset_password($condition) 
+	public static function reset_password($condition) 
 	{
 		if (isset($_POST['reset-password'])) 
 		{	
@@ -173,7 +173,7 @@ class Account
 		}
 	}
 
-	public function logout() 
+	public static function logout() 
 	{
 		session_start();
 		session_destroy();
