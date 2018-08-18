@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.7.17)
 # Database: ToDoApp_Github
-# Generation Time: 2018-08-18 05:48:19 +0000
+# Generation Time: 2018-08-18 18:12:41 +0000
 # ************************************************************
 
 
@@ -207,7 +207,7 @@ CREATE TABLE `tasks` (
   `author_id` bigint(20) NOT NULL,
   `title` varchar(60) NOT NULL DEFAULT '',
   `content` text NOT NULL,
-  `status_id` int(11) NOT NULL DEFAULT '1',
+  `status_id` int(11) NOT NULL DEFAULT '4',
   `priority_id` int(11) NOT NULL DEFAULT '2',
   `category_id` int(11) DEFAULT NULL,
   `group_id` int(11) DEFAULT NULL,
