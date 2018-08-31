@@ -27,3 +27,6 @@ The password for each account is "password"
 
 Email addresses are admin@todo.com, editor@todo.com, and user@todo.com respectively.
 
+#Note:
+The ToDo currently requires email, password, and username because it was originally intended to have multiple accounts per email address.
+
