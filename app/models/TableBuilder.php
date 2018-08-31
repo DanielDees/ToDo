@@ -10,7 +10,7 @@ class TableBuilder {
 	
 	//$data is an associative array that gets passed.
 	//The first item in the array is the header.
-	public function build($data, $attributes) {
+	public static function build($data, $attributes) {
 		
 		echo "<table class='" . $attributes . "'>";
 
