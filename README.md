@@ -10,7 +10,7 @@ This is simply an example of utilization of basic MVC design principles and work
 In order to run the application, first download the project and place it in whichever directory you want.
 
 ## DB Setup
-To setup the database, use a DB manager like [SequelPro](https://www.sequelpro.com/). 
+To setup the database, use a DB manager like [Sequel Pro](https://www.sequelpro.com/). 
 
 In the ToDo project folder, you will notice a subfolder called **"init"**. 
 
