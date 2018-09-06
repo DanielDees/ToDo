@@ -33,8 +33,6 @@
 		<div class="row">
 			<?php TableBuilder::build($table_data, $table_attributes); ?>
 		</div>
-
-		<p>I also have experience working with Bootstrap, JQuery, AJAX, and using MVC design patterns.</p>
 		
 	</div>
 	
