@@ -1,7 +1,8 @@
 # ToDo
 ToDo App Example for Resume.
 
-Note: This is an example of a simple CRUD application, there is not a significant focus on UI for this particular project. 
+### Note
+This is an example of a simple CRUD application, there is not a significant focus on UI for this particular project. 
 
 This is simply an example of utilization of basic MVC design principles and working with multiple programming languages.
 
