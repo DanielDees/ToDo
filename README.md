@@ -29,7 +29,8 @@ Once the server is running, simply open up a browser (Google Chrome recommended)
 ## Default Accounts
 There are three default user accounts after importing the database SQL.
 
-### Usernames | Passwords | Emails
+Usernames | Passwords | Emails
+--------- | --------- | ------
 admin | password | admin@todo.com
 editor | password | editor@todo.com
 user | password | user@todo.com
