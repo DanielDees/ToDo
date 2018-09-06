@@ -16,7 +16,6 @@
 		<?php 
 			if (isset($_SESSION['logged_in'])) {
 				echo  "<h2>Welcome: " . $_SESSION['username'] . "!</h2>";
-				echo "<p>Account Type: " . $_SESSION['account_type'] . "</p>";
 			}
 		?>
 		
@@ -24,11 +23,11 @@
 
 		<p>The makes uses BS4 for design, and an MVC framework built <a href='https://laracasts.com/series/php-for-beginners'>based off of Laravel's MVC layout.</a></p>
 
-		<h2>About Me</h2>
-
-		<h3>Daniel Dees</h3>
+		<h2>About Me - Daniel Dees</h2>
 
 		<p>I am a graduate of Southern Wesleyan University, with a B.S. in Applied Computer Science. I have several years of experience programming and am now looking for employment.</p>
+
+		<h4>Skills</h4>
 
 		<div class="row">
 			<?php TableBuilder::build($table_data, $table_attributes); ?>
