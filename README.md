@@ -30,13 +30,17 @@ Once the server is running, simply open up a browser (Google Chrome recommended)
 There are three default user accounts after importing the database SQL.
 
 ### Usernames
-admin, editor, user
+admin 
+editor
+user
 
-### Passwords
-The password for each account is "password"
+### Password (All accounts)
+password
 
 ### Emails
-admin@todo.com, editor@todo.com, and user@todo.com respectively.
+admin@todo.com 
+editor@todo.com 
+user@todo.com
 
 ## Note
 The ToDo currently requires email, password, and username because it was originally intended to have multiple accounts per email address.
