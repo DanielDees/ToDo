@@ -39,7 +39,3 @@ admin | password | admin@todo.com
 editor | password | editor@todo.com
 user | password | user@todo.com
 
-
-## Note
-The ToDo currently requires email, password, and username because it was originally intended to have multiple accounts per email address.
-
