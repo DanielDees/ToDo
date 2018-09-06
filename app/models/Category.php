@@ -78,7 +78,7 @@ class Category
 						class="form-control col-sm-4"
 						id="'. $type . '-category-title" 
 						maxlength="20" 
-						placeholder="Title..."
+						placeholder="New Category..."
 						value="' . $title . '" 
 						required>';
 
@@ -86,7 +86,7 @@ class Category
 
 		$form .= '<div class="row justify-content-center">';
 
-		$form .= '<button id="' . $type . '-category" class="btn btn-primary bg-success col-sm-2" data-id="' . $id . '"><span class="fas fa-plus-circle"></span> Submit</button>';
+		$form .= '<button id="' . $type . '-category" class="btn btn-primary bg-success col-sm-2" data-id="' . $id . '"><span class="fas fa-plus-circle"></span> Submit New Category</button>';
 		
 		$form .= '</div>';
 

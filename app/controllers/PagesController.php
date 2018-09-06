@@ -95,7 +95,6 @@ class PagesController
 	public function user_login() 
 	{
 		$user_info = [
-			'username' => $_POST['username'],
 			'email' => $_POST['email']
 		];
 

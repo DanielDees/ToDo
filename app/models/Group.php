@@ -85,7 +85,7 @@ class Group
 
 		$form .= '<div class="row justify-content-center">';
 
-		$form .= '<button id="' . $type . '-group" class="btn btn-primary bg-success col-sm-2" data-id="' . $id . '"><span class="fas fa-plus-circle"></span> Submit</button>';
+		$form .= '<button id="' . $type . '-group" class="btn btn-primary bg-success col-sm-2" data-id="' . $id . '"><span class="fas fa-plus-circle"></span> Submit New Group</button>';
 		
 		$form .= '</div><br>';
 

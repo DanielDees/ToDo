@@ -72,9 +72,10 @@ class Account
 		 	return false;
 		}
 
+		//One account per email
 		$new_user = [
-			'username' => $user['username'],
 			'email' => $email
+			// 'username' => $user['username'],
 		];
 
 		$duplicate = App::get('database')->where('users', $new_user);

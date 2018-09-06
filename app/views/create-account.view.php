@@ -73,7 +73,7 @@
 				}
 
 				//Duplicate account!
-				var msg = 'That username/email combination is taken!';
+				var msg = 'That email address has already been taken!';
 
 				show_warning(msg);
 

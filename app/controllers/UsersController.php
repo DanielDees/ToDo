@@ -36,8 +36,8 @@ class UsersController
 
 		$user = [
 			'username' => $_POST['username'],
+			'email' => $_POST['email'],
 			'password' => $password,
-			'email' => $_POST['email']
 		];
 
 		//Prevent duplicate accounts

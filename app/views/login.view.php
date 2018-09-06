@@ -3,15 +3,15 @@
 <h1>Login</h1>
 
 <form id="user-form" action="user-login" method="POST">
-	
+
 	<div class="input-group">
 		<div class="input-group-prepend">
-			<span class="input-group-text"><i class="fas fa-user fa-fw"></i></span>
-			<input 	type="text" 
-					name="username" 
-					maxlength="30" 
+			<span class="input-group-text"><i class="fas fa-envelope fa-fw"></i></span>
+			<input 	type="email"
+					name="email"
+					maxlength="50" 
 					class="form-control"
-					placeholder="Username..."
+					placeholder="Email..."
 					required>
 		</div>
 	</div>
@@ -24,18 +24,6 @@
 					maxlength="30"
 					class="form-control"
 					placeholder="Password..."
-					required>
-		</div>
-	</div>
-
-	<div class="input-group">
-		<div class="input-group-prepend">
-			<span class="input-group-text"><i class="fas fa-envelope fa-fw"></i></span>
-			<input 	type="email"
-					name="email"
-					maxlength="50" 
-					class="form-control"
-					placeholder="Email..."
 					required>
 		</div>
 	</div>
