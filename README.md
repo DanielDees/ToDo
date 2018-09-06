@@ -22,19 +22,22 @@ Next, look for the config.php file in the top level of the project's folder. Ope
 # Running the application
 To run the ToDo app, navigate to the project folder's location in your terminal and run a local PHP server. 
 
-Ex: php -S localhost:3000
+Ex: `php -S localhost:3000`
 
 Once the server is running, simply open up a browser (Google Chrome recommended), and use localhost:3000 in the browser URL bar.
 
 ## Default Accounts
 There are three default user accounts after importing the database SQL.
 
+### Usernames
 admin, editor, user
 
+### Passwords
 The password for each account is "password"
 
-Email addresses are admin@todo.com, editor@todo.com, and user@todo.com respectively.
+### Emails
+admin@todo.com, editor@todo.com, and user@todo.com respectively.
 
-#Note:
+## Note
 The ToDo currently requires email, password, and username because it was originally intended to have multiple accounts per email address.
 
