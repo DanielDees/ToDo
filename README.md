@@ -1,5 +1,9 @@
 # ToDo
-ToDo App Example for Resume
+ToDo App Example for Resume.
+
+Note: This is an example of a simple CRUD application, there is not a significant focus on UI for this particular project. 
+
+This is simply an example of utilization of basic MVC design principles and working with multiple programming languages.
 
 # Installation and Setup.
 In order to run the application, first download the project and place it in whichever directory you want.
